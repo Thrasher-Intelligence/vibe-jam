@@ -1,0 +1,25 @@
+{
+  "palette": {
+    "0": "#001F3F",
+    "1": "#FF4136",
+    "2": "#2ECC40",
+    "3": "#FFDC00",
+    "4": "#0074D9",
+    "5": "#B10DC9",
+    "6": "#7FDBFF",
+    "7": "#F2F2F2",
+    "8": "#111111",
+    "9": "#FF851B",
+    "10": "#3D9970",
+    "11": "#FFD700",
+    "12": "#4192D9",
+    "13": "#F012BE",
+    "14": "#39CCCC",
+    "15": "#FFFFFF"
+  },
+  "background": "#001F3F",
+  "foreground": "#F2F2F2",
+  "cursor-color": "#0074D9",
+  "selection-background": "#39CCCC",
+  "selection-foreground": "#001F3F"
+}
