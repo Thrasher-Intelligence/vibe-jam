@@ -1,0 +1,122 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+Icon\r\r
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+*.project
+.classpath
+.project
+.settings/
+*.nbproject/
+
+# Dependency directories
+node_modules/
+bower_components/
+vendor/
+jspm_packages/
+
+# Build artifacts and compiled files
+build/
+dist/
+out/
+target/
+*.o
+*.so
+*.dll
+*.lib
+*.a
+*.exe
+*.app
+*.jar
+*.war
+*.ear
+*.class
+*.pyc
+*.pyo
+*.pyd
+
+# Python virtual environments
+.Python
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+.installed.cfg
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Temporary files
+*.tmp
+*~
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Test Results
+.tox/
+/TEST_RESULTS/
+
+# System files
+desktop.ini
+ntuser.ini
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Sass cache
+.sass-cache/
+
+# Cache files
+.cache/
+cache/
+
+# Instance/local settings
+instance/
+local_settings.py
+
+# Specific to some Python frameworks
+htmlcov/ (coverage report)
+MANIFEST
+
+# pyenv
+.python-version
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
