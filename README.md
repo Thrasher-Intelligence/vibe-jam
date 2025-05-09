@@ -1,47 +1,97 @@
-# Loom
+# Ghostty Theme Generator (Loom)
 
-Loom is a Python application built for a 1-hour hackathon. It leverages the GPT-4 API to generate themes for the [Ghostty terminal emulator](https://ghostty.io/).
+Generate custom colour themes for the [Ghostty](https://ghostty.io/) terminal emulator in one command using OpenAI-powered prompts.
 
-## Hackathon Project
+> ⚠️  This began life as a one-hour hackathon experiment, so expect rough edges. Pull requests welcome!
 
-This project was created as part of a 1-hour hackathon. The primary goal is to demonstrate a functional concept of using AI to generate terminal themes.
+---
 
-## How it Works
+## How it works
 
-Loom uses Python to interact with the OpenAI GPT-4 API. You provide a prompt or some keywords, and Loom will instruct GPT-4 to generate a theme configuration compatible with Ghostty.
+1. `main.py` prompts you for a one-word theme name – e.g. `minecraft`, `vaporwave`, `brogrammer`.
+2. The script calls the OpenAI Chat Completion API (JSON-mode, GPT-4o) with a carefully curated schema description.
+3. GPT returns a valid Ghostty theme **JSON** object.
+4. We keep that JSON for development readability (`themes/ghostty/<name>.json`).
+5. The theme is also flattened into Ghosttyʼs native **.conf** format (key = value). That file is saved to:
+
+```
+/Applications/Ghostty.app/Contents/Resources/ghostty/themes/<name>
+```
+
+   • No extension, filename is lowercase.
+   • If macOS denies permission, the script offers to rerun the copy step with `sudo`.
+
+6. Finally you switch to the theme inside Ghosttyʼs UI (Preferences ▸ Themes ▸ Select your new theme).
+
+---
+
+## Repository layout
+
+```
+├── main.py                     # entry point – generates & installs themes
+├── schemas/
+│   └── ghostty.json            # JSON schema used in the prompt (for reference)
+├── themes/
+│   └── ghostty/                # generated JSON themes are stored here
+├── requirements.txt            # Python dependencies
+└── README.md                   # you are here
+```
+
+---
+
+## Prerequisites
+
+• Python 3.9+
+• A valid OpenAI API key with GPT-4 access
+• Ghostty installed (macOS only for now)
+
+---
 
 ## Setup
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url> # Replace <repository-url> with the actual URL
-    cd vibejam 
-    ```
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(You'll need to create a `requirements.txt` file, typically including the `openai` package and `python-dotenv` for managing the API key).*
-4.  **Set up your OpenAI API Key:**
-    Create a `.env` file in the root of the project (`vibejam/.env`):
-    ```env
-    OPENAI_API_KEY='your_api_key_here'
-    ```
-    **Important:** Ensure `.env` is listed in your `.gitignore` file (which we created earlier!) to protect your API key.
+```bash
+# 1. clone & enter
+$ git clone https://github.com/Thrasher-Intelligence/vibe-jam
+$ cd vibejam
+
+# 2. (optional) virtualenv
+$ python -m venv venv && source venv/bin/activate
+
+# 3. install deps
+$ pip install -r requirements.txt
+
+# 4. add your OpenAI key
+$ echo "OPENAI_API_KEY=sk-..." > .env
+```
+
+---
 
 ## Usage
 
-To run Loom (this is a conceptual example, the actual implementation might differ):
-
 ```bash
-python main.py "Create a cyberpunk theme with neon pink and electric blue highlights" 
+python main.py
 ```
-This would then output the Ghostty theme configuration.
 
-## Disclaimer
-This is a rapid prototype developed for a 1-hour hackathon. Functionality might be basic and error handling minimal.
+You will be asked for a theme name:
+
+```
+Enter a single-word theme name (e.g., 'brogrammer', 'dungeon', 'vaporwave'): minecraft
+```
+
+The script prints progress, writes the files, and (optionally) elevates to `sudo` when macOS blocks writes inside the Ghostty bundle.
+
+Once complete, open Ghostty ▸ Preferences ▸ Themes and choose your newly-generated theme.
+
+---
+
+## Troubleshooting
+
+• **Permission denied** – select `y` when asked to install via sudo.
+• **API quota / model errors** – ensure your key has GPT-4 access.
+• **Theme doesnʼt look right** – inspect the JSON in `themes/ghostty/<name>.json` and tweak values manually.
+
+---
+
+## License
+
+MIT – see `LICENSE` (coming soon).
